@@ -36,5 +36,8 @@ def request_validation(identifier):
     capture.closeCamera()
     payload=base64.b64encode(image_payload.ravel().tostring())
     data = {'data':payload.decode(),'id':identifier}
-    r = requests.post('http://localhost:5000/predict',json=data)
-    return True,float(r.json()['value']);
+    r = requests.post('http://35.203.169.198/predict',json=data)
+    if(r.json()['valid']=='True'):
+        return True,float(r.json()['value']);
+    else:
+        return False,0
