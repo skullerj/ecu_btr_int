@@ -1,5 +1,6 @@
-import tkinter as tk
-from tkinter import font  as tkfont
+# -*- coding: latin-1 -*-
+import Tkinter as tk
+import tkFont  as tkfont
 import control
 
 
@@ -56,7 +57,7 @@ class DigitPage(tk.Frame):
         self.controller = controller
         self.message=tk.StringVar()
 
-        label = tk.Label(self, text="Ingresa tu cédula", font=controller.title_font)
+        label = tk.Label(self, text="Ingresa tu cedula", font=controller.title_font)
         label.grid(columnspan=3,row=0,pady=10)
         messageLabel = tk.Label(self, textvariable=self.message,fg='#D50000')
         messageLabel.grid(columnspan=3,row=1)
@@ -104,7 +105,7 @@ class DigitPage(tk.Frame):
         self.columnconfigure(2, minsize=75)
 
     def nextPage(self):
-        #validar que la cédula sea correcta
+        #validar que la cedula sea correcta
         if(len(self.controller.id.get())<10):
             return self.showError()
         else:
@@ -113,7 +114,7 @@ class DigitPage(tk.Frame):
 
     def showError(self):
 
-        self.message.set('Cédula inválida')
+        self.message.set('Cedula invalida')
 
 
 class ControlPage(tk.Frame):

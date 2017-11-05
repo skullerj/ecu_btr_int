@@ -1,3 +1,4 @@
+
 import cv2
 import numpy as np
 import requests
@@ -22,12 +23,11 @@ class CameraCapture():
 
         for i in range(self.ramp_frames):
             temp = self.getImage()
-        print("Taking image...")
         camera_capture = self.getImage()
         crop_img = camera_capture[100:900, 220:1920]
         resized = cv2.resize(crop_img, (200, 100))
         return resized
-
+cd 
 
 def request_validation(identifier):
     capture= CameraCapture()
@@ -36,5 +36,5 @@ def request_validation(identifier):
     capture.closeCamera()
     payload=base64.b64encode(image_payload.ravel().tostring())
     data = {'data':payload.decode(),'id':identifier}
-    r = requests.post('http://localhost:5000/predict',json=data)
+    r = requests.post('https://thawing-oasis-25126/predict',json=data)
     return True,float(r.json()['value']);
