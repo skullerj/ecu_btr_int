@@ -3,13 +3,14 @@ import Tkinter as tk
 import tkFont  as tkfont
 import control
 
+servo = control.ServoMove()
 
 class SampleApp(tk.Tk):
 
 
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
-        self.geometry('240x320')
+        self.attributes('-fullscreen',True)
         self.resizable(width=False, height=False)
         self.title_font = tkfont.Font(family='Helvetica', size=24)
         self.button_font = tkfont.Font(family='Helvetica', size=18)
@@ -127,15 +128,13 @@ class ControlPage(tk.Frame):
         self.value.set('0')
         self.statusMessage = tk.StringVar()
         self.statusLabel = tk.Label(self,textvariable=self.statusMessage);
-        self.statusLabel.grid(columnspan=3,row=1)
-        label = tk.Label(self, text="Cédula: ", font=controller.title_font)
-        label.grid(row=0,padx=2,pady=10)
+        self.statusLabel.grid(columnspan=3,row=1,pady=10,sticky='wens')
 
         idLabel = tk.Label(self, textvariable=self.controller.id, font=controller.title_font)
-        idLabel.grid(columnspan=3,row=0,column=1,pady=10)
+        idLabel.grid(columnspan=3,row=0,column=0,pady=10,sticky='wens')
         scanButton = tk.Button(self, text="Escanear",
                            command=self.predict)
-        scanButton.grid(columnspan=3,row=2)
+        scanButton.grid(columnspan=3,row=2,pady=10,sticky='wens')
 
         totalLabel = tk.Label(self,text='Total: $',font=controller.title_font,pady=10)
         totalLabel.grid(column=0,row=3,rowspan=2)
@@ -148,13 +147,16 @@ class ControlPage(tk.Frame):
         finishButton.grid(column=2,row=5)
 
     def predict(self):
-        result,value = control.request_validation(self.controller.id.get())
-        if(result):
-            newTotal = float(self.value.get())+value
-            self.value.set("{0:.2f}".format(round(newTotal,2)))
-            self.showSuccess('Botella recibida!')
-        else:
-            self.showError('No reconocemos tu botella :(')
+		self.statusMessage.set('Escanenando...')
+		result,value = control.request_validation(self.controller.id.get())
+		if(result):
+			newTotal = float(self.value.get())+value
+			self.value.set("{0:.2f}".format(round(newTotal,2)))
+			self.showSuccess('Botella recibida!')
+			servo.accept()
+		else:
+			self.showError('No reconocemos tu botella :(')
+			servo.reject()
 
     def showSuccess(self,message):
         self.statusLabel.config(fg='#00C853')
