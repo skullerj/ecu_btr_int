@@ -24,8 +24,8 @@ class ServoMove():
 		call(['gpio','pwm','33','400'])
 		
 	def accept(self):	
-		self.position=500
-		call(['gpio','pwm','33','500'])
+		self.position=530
+		call(['gpio','pwm','33','530'])
 		time.sleep(1)
 		self.center()
 		
@@ -58,10 +58,7 @@ class CameraCapture():
         camera_capture = self.getImage()
         print camera_capture.shape
         crop_img = camera_capture[20:360, 0:680]
-        cv2.imwrite('cropped.jpg',crop_img)
         resized = cv2.resize(crop_img, (200, 100))
-        print resized.shape
-        cv2.imwrite('recent.jpg',resized)
         return resized 
 
 def request_validation(identifier):

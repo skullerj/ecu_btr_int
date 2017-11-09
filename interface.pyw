@@ -147,7 +147,8 @@ class ControlPage(tk.Frame):
         finishButton.grid(column=2,row=5)
 
     def predict(self):
-		self.statusMessage.set('Escanenando...')
+		self.showSuccess('Escanenando...')
+		control.time.sleep(0.1)
 		result,value = control.request_validation(self.controller.id.get())
 		if(result):
 			newTotal = float(self.value.get())+value
@@ -191,5 +192,6 @@ class FinalPage(tk.Frame):
 
 
 if __name__ == "__main__":
-    app = SampleApp()
-    app.mainloop()
+	app = SampleApp()
+	app.mainloop()
+
