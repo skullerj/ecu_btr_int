@@ -64,7 +64,7 @@ class DigitPage(tk.Frame):
         messageLabel = tk.Label(self, textvariable=self.message,fg='#D50000')
         messageLabel.grid(columnspan=3,row=1)
         id = self.controller.id
-        entry = tk.Entry(self,textvariable=id,justify='center',state='readonly',font=controller.input_font)
+        entry = tk.Entry(self,textvariable=id,justify='center',state='readonly')
         entry.grid(columnspan=2,row=2,sticky='wens')
         delButton=tk.Button(self,text='<-',height=1,command=lambda:id.set(id.get()[:-1]))
         delButton.grid(row=2,column=2)
@@ -195,4 +195,3 @@ class FinalPage(tk.Frame):
 if __name__ == "__main__":
 	app = SampleApp()
 	app.mainloop()
-
