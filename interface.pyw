@@ -13,7 +13,7 @@ class SampleApp(tk.Tk):
         self.attributes('-fullscreen',True)
         self.resizable(width=False, height=False)
         self.title_font = tkfont.Font(family='Helvetica', size=18)
-        self.button_font = tkfont.Font(family='Helvetica', size=14)
+        self.button_font = tkfont.Font(family='Helvetica', size=15)
         self.number_button_font = tkfont.Font(family='Helvetica', size=18)
         self.input_font = tkfont.Font(family='Helvetica', size=16)
         self.id = tk.StringVar()
