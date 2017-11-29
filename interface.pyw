@@ -13,7 +13,7 @@ class SampleApp(tk.Tk):
         self.attributes('-fullscreen',True)
         self.resizable(width=False, height=False)
         self.title_font = tkfont.Font(family='Helvetica', size=18)
-        self.button_font = tkfont.Font(family='Helvetica', size=16)
+        self.button_font = tkfont.Font(family='Helvetica', size=14)
         self.number_button_font = tkfont.Font(family='Helvetica', size=18)
         self.input_font = tkfont.Font(family='Helvetica', size=16)
         self.id = tk.StringVar()
@@ -149,7 +149,7 @@ class ControlPage(tk.Frame):
 
     def predict(self):
 		self.showSuccess('Escanenando...')
-		control.time.sleep(0.1)
+        self.controller.update()
 		result,value = control.request_validation(self.controller.id.get())
 		if(result):
 			newTotal = float(self.value.get())+value
