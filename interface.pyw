@@ -148,10 +148,10 @@ class ControlPage(tk.Frame):
         finishButton.grid(column=2,row=5)
 
     def predict(self):
-		self.showSuccess('Escanenando...')
+        self.showSuccess('Escanenando...')
         self.controller.update()
-		result,value = control.request_validation(self.controller.id.get())
-		if(result):
+        result,value = control.request_validation(self.controller.id.get())
+        if(result):
 			newTotal = float(self.value.get())+value
 			self.value.set("{0:.2f}".format(round(newTotal,2)))
 			self.showSuccess('Botella recibida!')
