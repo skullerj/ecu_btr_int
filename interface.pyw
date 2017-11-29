@@ -59,7 +59,7 @@ class DigitPage(tk.Frame):
         self.controller = controller
         self.message=tk.StringVar()
 
-        label = tk.Label(self, text="Ingresa tu cedula", font=controller.button_font)
+        label = tk.Label(self, text="Ingresa tu cedula", font=controller.title_font)
         label.grid(columnspan=3,row=0,pady=10)
         messageLabel = tk.Label(self, textvariable=self.message,fg='#D50000')
         messageLabel.grid(columnspan=3,row=1)
