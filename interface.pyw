@@ -152,13 +152,13 @@ class ControlPage(tk.Frame):
         self.controller.update()
         result,value = control.request_validation(self.controller.id.get())
         if(result):
-			newTotal = float(self.value.get())+value
-			self.value.set("{0:.2f}".format(round(newTotal,2)))
-			self.showSuccess('Botella recibida!')
-			servo.accept()
-		else:
-			self.showError('No reconocemos tu botella :(')
-			servo.reject()
+            newTotal = float(self.value.get())+value
+            self.value.set("{0:.2f}".format(round(newTotal,2)))
+            self.showSuccess('Botella recibida!')
+            servo.accept()
+        else:
+            self.showError('No reconocemos tu botella :(')
+            servo.reject()
 
     def showSuccess(self,message):
         self.statusLabel.config(fg='#00C853')
